@@ -748,5 +748,76 @@ SELECT|sys.sys_config
       <ObjectGrants>ALL PRIVILEGES!
 </ObjectGrants>
     </user>
+    <table id="232" parent="3" name="doctrine_migration_versions">
+      <Engine>InnoDB</Engine>
+      <Collation>utf8_unicode_ci</Collation>
+    </table>
+    <table id="233" parent="3" name="user">
+      <Engine>InnoDB</Engine>
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
+    <column id="234" parent="232" name="version">
+      <Position>1</Position>
+      <DataType>varchar(191)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="235" parent="232" name="executed_at">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="236" parent="232" name="execution_time">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <key id="237" parent="232" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>version</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="238" parent="233" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="239" parent="233" name="email">
+      <Position>2</Position>
+      <DataType>varchar(180)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="240" parent="233" name="roles">
+      <Position>3</Position>
+      <DataType>json|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="241" parent="233" name="password">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="242" parent="233" name="firstname">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="243" parent="233" name="lastname">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="244" parent="233" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="245" parent="233" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="246" parent="233" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D649E7927C74</UnderlyingIndexName>
+    </key>
   </database-model>
 </dataSource>
