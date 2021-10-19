@@ -7,6 +7,7 @@ body{
 }
 
 .footer-custom{
+    display: none; /* TODO: Refaire le footer */
     text-align: center;
     position: absolute;
     bottom: 0;
