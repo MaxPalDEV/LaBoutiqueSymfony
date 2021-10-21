@@ -7,6 +7,7 @@ use App\Entity\Order;
 use App\Entity\OrderDetails;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,6 +77,8 @@ class OrderController extends AbstractController
 
             // Enregistrer la commande Order()
             $order = new Order();
+            $reference = $date->format('dmY').'-'.uniqid(); // Création de la référence commande pour stripe
+            $order->setReference($reference);
             $order->setUser($this->getUser());
             $order->setCreatedAt($date);
             $order->setCarrierName($carrier->getName());
@@ -94,15 +97,18 @@ class OrderController extends AbstractController
                 $orderDetails->setPrice($product['product']->getPrice());
                 $orderDetails->setTotal($product['product']->getPrice() * $product['quantity']);
                 $this->entityManager->persist($orderDetails);
+
             }
 
             $this->entityManager->flush();
 
+
+
             return $this->render('order/add.html.twig', [
-                'form' => $form->createView(),
                 'cart' => $cart->getFull(), // Envoi du panier pour le récap de la commande
                 'carrier' => $carrier,
-                'delivery' => $delivery_content
+                'delivery' => $delivery_content,
+                'reference' => $order->getReference()
             ]);
         }
 
