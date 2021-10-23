@@ -4,11 +4,27 @@
 
 {% block content %}
     <h1>Mon compte</h1>
-    Bienvenue {{ app.user.firstname }} dans votre compte. C'est dans cet espace que vous allez pouvoir gérer vos informations personnelles.
+    {% if is_granted('ROLE_ADMIN') %}
+        <small><a href="/admin">Accéder à l'administration</a></small> <br>
+    {% endif %}
+    Bienvenue {{ app.user.firstname }} dans votre compte. <br> C'est dans cet espace que vous allez pouvoir gérer vos informations personnelles.
 
     <hr>
-
-    <h3><a href="{{ path('account_password') }}"> Modifier mon mot de passe</a></h3>
-    <h3><a href="{{ path('account_address') }}"> Mes adresses</a></h3>
-    <h3><a href="{{ path('account_order') }}"> Mes commandes</a></h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <a href="{{ path('account_password') }}"> Modifier mon mot de passe</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <a href="{{ path('account_address') }}"> Mes adresses</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="account-item text-center">
+                <a href="{{ path('account_order') }}"> Mes commandes</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

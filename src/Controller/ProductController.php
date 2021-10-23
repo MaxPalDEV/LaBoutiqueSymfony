@@ -55,8 +55,12 @@ class ProductController extends AbstractController
             $this->redirectToRoute('products'); // Renvoi aux produits si auucun produit n'est trouvé
         }
 
+        // Affichage "Nos clients aiment aussi"
+        $products = $this->entityManager->getRepository(Product::class)->findBy(['isBest'=>1]);
+
         return $this->render('product/show.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'products' => $products
         ]);
     }
 }
